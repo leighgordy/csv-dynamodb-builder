@@ -1,0 +1,32 @@
+{
+  "name": "csv-dynamodb-builder",
+  "version": "1.0.0",
+  "description": "csv importer to dynamodb",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "list": "node --experimental-json-modules src/list.js ",
+    "wipe": "node --experimental-json-modules src/wipe.js ",
+    "build": "node --experimental-json-modules src/build.js ",
+    "populate": "node --experimental-json-modules src/populate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leighgordy/csv-dynamodb-builder.git"
+  },
+  "keywords": [
+    "csv",
+    "dynamodb"
+  ],
+  "author": "Leigh Gordon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leighgordy/csv-dynamodb-builder/issues"
+  },
+  "homepage": "https://github.com/leighgordy/csv-dynamodb-builder#readme",
+  "dependencies": {
+    "aws-sdk": "^2.794.0",
+    "csv-parser": "^2.3.3"
+  }
+}
