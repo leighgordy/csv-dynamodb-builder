@@ -1,6 +1,6 @@
-import configs from '../data/config.json';
-import AWSConfig from '../data/AWS-config.json';
-import AWS from 'aws-sdk';
+const AWSConfig = require('../data/AWS-config.json');
+const AWS = require('aws-sdk')
+const configs = require('../data/config.json');
 
 AWS.config.update(AWSConfig);
 
@@ -11,8 +11,8 @@ const dynamodb = new AWS.DynamoDB();
     console.log('Database has tables, must be empty for script to run')
   } else {
     configs.forEach(async (config) => {
-      const table = await import(`../data/${config.table}`);
-      await dynamodb.createTable(table.default).promise();
+      const table = require(`../data/${config.table}`);
+      await dynamodb.createTable(table).promise();
     });
   }
 })();

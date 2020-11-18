@@ -1,6 +1,5 @@
-import AWSConfig from '../data/AWS-config.json';
-import AWS from 'aws-sdk';
-
+const AWSConfig = require('../data/AWS-config.json');
+const AWS = require('aws-sdk');
 AWS.config.update(AWSConfig);
 
 const dynamodb = new AWS.DynamoDB();

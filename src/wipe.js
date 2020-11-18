@@ -1,6 +1,6 @@
-import configs from '../data/config.json';
-import AWSConfig from '../data/AWS-config.json';
-import AWS from 'aws-sdk';
+const AWSConfig = require('../data/AWS-config.json');
+const AWS = require('aws-sdk')
+const configs = require('../data/config.json');
 
 AWS.config.update(AWSConfig);
 

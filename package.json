@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "csv importer to dynamodb",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "list": "node --experimental-json-modules src/list.js ",
-    "wipe": "node --experimental-json-modules src/wipe.js ",
-    "build": "node --experimental-json-modules src/build.js ",
-    "populate": "node --experimental-json-modules src/populate.js",
+    "list": "node src/list.js ",
+    "wipe": "node src/wipe.js ",
+    "build": "node src/build.js ",
+    "populate": "node src/populate.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
