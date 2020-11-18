@@ -6,17 +6,6 @@ const configs = require('../data/table-list.json');
 
 const ROOT_DIR = './data/';
 
-const replaceTokens = (data, template) => {
-  let jsonStr = template;
-  Object.keys(data).forEach((key) => {
-    const find = 'abc';
-    const re = new RegExp(`#${key}`, 'g');
-    jsonStr = jsonStr.replace(re, data[key]);
-  });
-  console.log(jsonStr);
-  return JSON.parse(jsonStr);
-};
-
 AWS.config.update(AWSConfig);
 const docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -24,14 +13,21 @@ const docClient = new AWS.DynamoDB.DocumentClient();
   const results = [];
   configs.forEach((config) => {
     const table = require(`../data/${config.table}`);
-    const template = fs.readFileSync(`./data/${config.template}`, 'utf8');
     fs.createReadStream(`${ROOT_DIR}${config.data}`)
       .pipe(csv())
       .on('data', async (data) => {
-        const Item = replaceTokens(data, template);
+        const parsedData = {};
+        Object.keys(data).forEach((key) => {
+          try {
+            parsedData[key] = JSON.parse(data[key]);
+          } catch (e) {
+            parsedData[key] = data[key];
+          }
+        });
+        console.log(parsedData);
         var params = {
           TableName: table.TableName,
-          Item: Item,
+          Item: parsedData,
         };
        await docClient.put(params).promise();
       });
