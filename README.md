@@ -1,11 +1,52 @@
 # csv-dynamodb-builder
-Builds dynamoddb table from a CSV template using aws api. AWS offer there own [method for CSV injection](https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/). This script is different in that it uses a template to populate the database. So nested elements have there own columns rather than json objects coded within columns. 
+Builds [DynamoDb](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html) from a CSV file, this is meant for use with a [local instance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html). 
+If you are working with a aws managed service you should use 
+[amazons own method](https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/)
+which is great for populating a live database.
 
-I've built my own script for two reasons. 
-* First I want to build a local instance using CSV for testing and my own project is very data heavy. 
-* I don't mind paying amazon for production time but not for admin tasks. If I can do it myself for free then I will! 
+You could use this to populate a live dynamodb but I suspect it will be more expensive than using their CSV method. 
+Also this is making separate create queries for each item. If it fails you have a half built database with no rollback.
 
 ## Instructions
+### How to use this project
+This has been designed to work with multiple tables. 
+
+To add a new table execute the following commands within the root of this project.
+```
+cd ./data
+mkdir movies
+touch data.csv
+touch table-definition.json
+```
+Then update `table-list.json` with a new entry. See example below.
+```
+[
+  {
+    "table": "movies/table-definition.json",
+    "data": "movies/data.csv"
+  }
+]
+``` 
+Update `table-definition.json` with your table definition [see example](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html).
+populate.
+
+If you have not already setup a local dynamodb instance. 
+You can launch the docker compose instance withing this project. 
+You have to install [docker compose](https://docs.docker.com/compose/install/) before executing the next command within the root of this project. 
+```
+sudo docker-compose up
+```
+To build and populate all the tables simply execute these commands in sequence from within the project root.
+```
+npm run build
+npm run fill
+```
+
+### Project Commands
+* `npm run wipe` - Removes all the tables listed in this project from the database.
+* `npm run build` - Builds all the tables defined within this project
+* `npm run fill` - Populates all the tables with the data from the CSV's
+* `npm run list` - Lists all the tables defined within dynamodb.
 
 ## issues
 ### Querying tables
