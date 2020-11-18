@@ -7,7 +7,7 @@
     "list": "node src/list.js ",
     "wipe": "node src/wipe.js ",
     "build": "node src/build.js ",
-    "populate": "node src/populate.js",
+    "fill": "node src/fill.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

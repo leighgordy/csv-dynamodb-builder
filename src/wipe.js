@@ -1,9 +1,8 @@
 const AWSConfig = require('../data/AWS-config.json');
 const AWS = require('aws-sdk')
-const configs = require('../data/config.json');
+const configs = require('../data/table-list.json');
 
 AWS.config.update(AWSConfig);
-
 const dynamodb = new AWS.DynamoDB();
 
 (async() =>{
@@ -12,8 +11,8 @@ const dynamodb = new AWS.DynamoDB();
     console.log('Database already empty')
   } else {
     configs.forEach(async (config) => {
-      const table = await import(`../data/${config.table}`);
-      await dynamodb.deleteTable({ TableName: table.default.TableName }).promise();
+      const table = require(`../data/${config.table}`);
+      await dynamodb.deleteTable({ TableName: table.TableName }).promise();
     });
   }
 })();

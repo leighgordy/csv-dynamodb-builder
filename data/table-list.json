@@ -2,6 +2,6 @@
   {
     "table": "table-definition.json",
     "data": "data.csv",
-    "template": "entry-template.json"
+    "template": "entry-template.txt"
   }
 ]

@@ -1,30 +1,15 @@
 {
-  "AttributeDefinitions": [
-    {
-      "AttributeName": "CUSTOMER_ID",
-      "AttributeType": "N"
-    },
-    {
-      "AttributeName": "CUSTOMER_NAME",
-      "AttributeType": "S"
-    }
-  ],
+  "TableName" : "Movies",
   "KeySchema": [
-    {
-      "AttributeName": "CUSTOMER_ID",
-      "KeyType": "HASH"
-    },
-    {
-      "AttributeName": "CUSTOMER_NAME",
-      "KeyType": "RANGE"
-    }
+    { "AttributeName": "year", "KeyType": "HASH"},
+    { "AttributeName": "title", "KeyType": "RANGE" }
+  ],
+  "AttributeDefinitions": [
+    { "AttributeName": "year", "AttributeType": "N" },
+    { "AttributeName": "title", "AttributeType": "S" }
   ],
   "ProvisionedThroughput": {
-    "ReadCapacityUnits": 1,
-    "WriteCapacityUnits": 1
-  },
-  "TableName": "CUSTOMER_LIST",
-  "StreamSpecification": {
-    "StreamEnabled": false
+    "ReadCapacityUnits": 10,
+    "WriteCapacityUnits": 10
   }
 }
