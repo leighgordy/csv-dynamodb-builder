@@ -4,8 +4,8 @@ If you are working with a aws managed service you should use
 [amazons own method](https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/)
 which is great for populating a live database.
 
-You could use this to populate a live dynamodb but I suspect it will be more expensive than using their CSV method. 
-Also this is making separate create queries for each item. If it fails you have a half built database with no rollback.
+You could use this to populate a live dynamodb instance, but I suspect it will be more expensive than using their own CSV method. 
+Also if this fails you have a half built database with no rollback.
 
 ## Instructions
 ### How to use this project
@@ -41,6 +41,14 @@ To build and populate all the tables simply execute these commands in sequence f
 npm run build
 npm run fill
 ```
+### CSV Variables
+I've added support for both external JSON templates and ID generation. 
+
+Use the following varibale within your template if you want to inject a JSON file.
+```#TEMPLATE#../data/movies/film1.json```. 
+
+If you want to generate a unique ID as part of any field. Use the following variable within your CSV.
+```#LOOP_CNT#```
 
 ### Project Commands
 * `npm run wipe` - Removes all the tables listed in this project from the database.

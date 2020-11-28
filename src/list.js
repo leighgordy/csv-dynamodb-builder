@@ -5,6 +5,10 @@ AWS.config.update(AWSConfig);
 const dynamodb = new AWS.DynamoDB();
 
 (async() =>{
-  const response = await dynamodb.listTables().promise();
-  console.log(response);
+  try {
+    const response = await dynamodb.listTables().promise();
+    console.log(response);
+  } catch (err) {
+    console.log(err.message);
+  }
 })();
