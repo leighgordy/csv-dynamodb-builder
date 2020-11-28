@@ -44,7 +44,7 @@ npm run fill
 ### CSV Variables
 I've added support for both external JSON templates and ID generation. 
 
-Use the following varibale within your template if you want to inject a JSON file.
+Use the following variable within your template if you want to inject a JSON file.
 ```#TEMPLATE#../data/movies/film1.json```. 
 
 If you want to generate a unique ID as part of any field. Use the following variable within your CSV.
@@ -58,12 +58,11 @@ If you want to generate a unique ID as part of any field. Use the following vari
 
 ## issues
 ### Querying tables
-If you are using the CLI you need to remember to provide the local settings in its call `--endpoint-url` and `--region` as follows.
+If you are also using the CLI you need to remember to provide the local settings in its call `--endpoint-url` and `--region` as follows.
 
 ```
 aws dynamodb --endpoint-url http://localhost:8000 list-tables --region us-west-2
 ```
-Otherwise cli returns nothing!
 
 ### Simple aws cli Table Query
 Leaving note of it here as it's hard to remember! 
